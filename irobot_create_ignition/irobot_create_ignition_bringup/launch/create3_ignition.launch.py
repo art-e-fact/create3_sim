@@ -46,6 +46,8 @@ ARGUMENTS = [
                           description='Robot name'),
     DeclareLaunchArgument('use_rviz', default_value='true',
                           choices=['true', 'false'], description='Start rviz.'),
+    DeclareLaunchArgument('gazebo_args', default_value='',
+                          description='Extra args for Gazebo'),
     DeclareLaunchArgument('spawn_dock', default_value='true',
                           choices=['true', 'false'],
                           description='Spawn the standard dock model.'),
@@ -111,6 +113,7 @@ def generate_launch_description():
             ('ign_args', [LaunchConfiguration('world'),
                           '.sdf',
                           ' -v 4',
+                          LaunchConfiguration('gazebo_args'),
                           ' --gui-config ',
                           PathJoinSubstitution([pkg_irobot_create_ignition_bringup,
                                                 'gui', 'create3', 'gui.config'])])
